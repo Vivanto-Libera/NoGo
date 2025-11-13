@@ -3,6 +3,8 @@
 #include<iostream>
 #include<pybind11/pybind11.h>
 #include <set>
+#include <array>
+#include <vector>
 
 namespace py = pybind11;
 
@@ -26,7 +28,7 @@ struct Point
 class GoString
 {
 public:
-	Color color;
+	enum Color color;
 	std::set<Point> stones;
 	std::set<Point> liberties;
 
@@ -44,8 +46,22 @@ public:
 	}
 	GoString merge(GoString goString);
 
-	GoString(Color color, std::set<Point> stones, std::set<Point> liberties) :color(color), stones(stones), liberties(liberties) {};
+	GoString::GoString(enum Color color, std::set<Point>& stones, std::set<Point>& liberties) :color(color), stones(stones), liberties(liberties) {}
 	~GoString(){}
+};
+
+class Board
+{
+public:
+	std::array<std::array<enum Color, 9>, 9> board;
+	enum Color turn;
+	std::array<std::array<GoString*, 9>, 9> pointToString;
+	std::vector<GoString> strings;
+
+	Board();
+	Board(const Board& aBoard);
+private:
+	
 };
 
 #endif
