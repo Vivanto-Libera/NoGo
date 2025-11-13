@@ -1,0 +1,13 @@
+﻿#include "Board.h"
+
+GoString GoString::merge(GoString goString)
+{
+	std::set<Point> newStones;
+	newStones.insert(stones.begin(), stones.end());
+	newStones.insert(goString.stones.begin(), goString.stones.end());
+	std::set<Point> newLiberties;
+	newLiberties.insert(liberties.begin(), liberties.end());
+	newLiberties.insert(goString.liberties.begin(), goString.liberties.end());
+	newLiberties.erase(newStones.begin(), newStones.end());
+	return GoString(color, newStones, newLiberties);
+}

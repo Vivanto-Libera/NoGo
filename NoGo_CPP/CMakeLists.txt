@@ -1,0 +1,7 @@
+﻿cmake_minimum_required (VERSION 3.8)
+project ("NoGo_CPP")
+set(PYBIND11_FINDPYTHON ON)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+add_subdirectory(extern/pybind11)
+pybind11_add_module(NoGo main.cpp Board.cpp)
+install (TARGETS NoGo DESTINATION .)
