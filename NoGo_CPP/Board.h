@@ -2,9 +2,10 @@
 #define BOARD_H
 #include<iostream>
 #include<pybind11/pybind11.h>
-#include <set>
+#include <unordered_set>
 #include <array>
 #include <vector>
+#include<pybind11/stl.h>
 
 namespace py = pybind11;
 
@@ -23,14 +24,30 @@ struct Point
 		row = x;
 		col = y;
 	}
+	bool operator==(const Point& point) const
+	{
+		return row == point.row && col == point.col;
+	}
 };
+namespace std
+{
+	template<> struct hash<Point>
+	{
+		size_t operator()(const Point& point) const noexcept
+		{
+			size_t h1 = hash<int>()(point.row);
+			size_t h2 = hash<int>()(point.col);
+			return h1 ^ (h2 << 1);
+		}
+	};
+}
 
 class GoString
 {
 public:
-	enum Color color;
-	std::set<Point> stones;
-	std::set<Point> liberties;
+	Color color;
+	std::unordered_set<Point> stones;
+	std::unordered_set<Point> liberties;
 
 	void removeLiberties(const Point& point)
 	{
@@ -40,28 +57,88 @@ public:
 	{
 		liberties.insert(point);
 	}
-	int numLiberties()
+	int numLiberties() const
 	{
 		return liberties.size();
 	}
 	GoString merge(GoString goString);
+	bool hasPoint(Point point) const
+	{
+		auto it = stones.find(point);
+		return it != stones.end();
+	}
 
-	GoString::GoString(enum Color color, std::set<Point>& stones, std::set<Point>& liberties) :color(color), stones(stones), liberties(liberties) {}
+	bool operator==(const GoString& string) const
+	{
+		return color == string.color && stones == string.stones && liberties == string.liberties;
+	}
+	GoString operator=(const GoString& string)
+	{
+		return GoString(string);
+	}
+
+	GoString(Color color, std::unordered_set<Point>& stones, std::unordered_set<Point>& liberties) :color(color), stones(stones), liberties(liberties) {}
+	GoString(const GoString& string)
+	{
+		color = string.color;
+		stones = string.stones;
+		liberties = string.liberties;
+	}
 	~GoString(){}
 };
+namespace std
+{
+	template<> struct hash<GoString>
+	{
+		size_t operator()(const GoString& gs) const noexcept
+		{
+			size_t hash_result = hash<int>()(gs.color);
+			for (const auto& stone : gs.stones)
+			{
+				hash_result += hash<Point>()(stone);
+			}
+			for (const auto& lib : gs.liberties)
+			{
+				hash_result += hash<Point>()(lib);
+			}
+			return hash_result;
+		}
+	};
+}
 
 class Board
 {
 public:
-	std::array<std::array<enum Color, 9>, 9> board;
-	enum Color turn;
-	std::array<std::array<GoString*, 9>, 9> pointToString;
-	std::vector<GoString> strings;
+	static const int rowDirection[4];
+	static const int colDirection[4];
+
+	std::array<std::array<Color, 9>, 9> board;
+	Color turn;
+	std::unordered_set<GoString> strings;
+
+	std::vector<int> legalMoves();
+	void applyMove(int move);
+	Color isTerminal();
+	py::tuple netwrokInput();
+
+	static int indexToNum(int row, int col)
+	{
+		return row * 10 + col;
+	}
 
 	Board();
 	Board(const Board& aBoard);
 private:
-	
+	const GoString findString(Point point)
+	{
+		for (auto& s : strings)
+		{
+			if(s.hasPoint(point))
+			{
+				return s;
+			}
+		}
+	}
 };
 
 #endif
