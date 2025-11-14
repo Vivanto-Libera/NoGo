@@ -123,7 +123,7 @@ public:
 
 	static int indexToNum(int row, int col)
 	{
-		return row * 10 + col;
+		return row * 9 + col;
 	}
 
 	Board();
