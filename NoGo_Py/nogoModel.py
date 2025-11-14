@@ -36,7 +36,7 @@ class NoGoModel(nn.Module):
             nn.Linear(10368, 128),
             nn.ReLU(),
             nn.Linear(128, 81),
-            nn.Softmax()
+            nn.Softmax(dim=1)
         )
         self.value_head = nn.Sequential(
             nn.Conv2d(128, 1,1),
