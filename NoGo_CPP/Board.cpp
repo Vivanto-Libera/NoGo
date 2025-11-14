@@ -34,6 +34,7 @@ void Board::applyMove(int move)
 {
 	int row = move / 10;
 	int col = move % 10;
+	board[row][col] = turn;
 	std::unordered_set<GoString> sameColor;
 	std::unordered_set<GoString> oppositeColor;
 	std::unordered_set<Point> liberties;
