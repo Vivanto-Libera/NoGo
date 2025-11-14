@@ -53,36 +53,39 @@ public:
 	{
 		liberties.erase(point);
 	}
-	void addLiberties(const Point& point)
-	{
-		liberties.insert(point);
-	}
 	int numLiberties() const
 	{
 		return liberties.size();
 	}
-	GoString merge(GoString goString);
-	bool hasPoint(Point point) const
+	GoString merge(const GoString& goString);
+	bool hasPoint(const Point& point) const
 	{
-		auto it = stones.find(point);
-		return it != stones.end();
+		return stones.count(point);
 	}
 
 	bool operator==(const GoString& string) const
 	{
 		return color == string.color && stones == string.stones && liberties == string.liberties;
 	}
-	GoString operator=(const GoString& string)
+	GoString& operator=(const GoString& string)
 	{
-		return GoString(string);
+		color = string.color;
+		stones.insert(string.stones.begin(), string.stones.end());
+		liberties.insert(string.liberties.begin(), string.liberties.end());
+		return *this;
 	}
 
-	GoString(Color color, std::unordered_set<Point>& stones, std::unordered_set<Point>& liberties) :color(color), stones(stones), liberties(liberties) {}
+	GoString(Color color, const std::vector<Point>& stones, const std::vector<Point>& liberties)
+	{
+		this->color = color;
+		this->stones.insert(stones.begin(), stones.end());
+		this->liberties.insert(liberties.begin(), liberties.end());
+	}
 	GoString(const GoString& string)
 	{
 		color = string.color;
-		stones = string.stones;
-		liberties = string.liberties;
+		stones.insert(string.stones.begin(), string.stones.end());
+		liberties.insert(string.liberties.begin(), string.liberties.end());
 	}
 	~GoString(){}
 };
@@ -129,15 +132,17 @@ public:
 	Board();
 	Board(const Board& aBoard);
 private:
-	const GoString findString(Point point)
+	const GoString findString(const Point& point)
 	{
 		for (auto& s : strings)
 		{
-			if(s.hasPoint(point))
+			if (s.hasPoint(point))
 			{
 				return s;
 			}
 		}
+		py::object print = py::module_::import("builtins").attr("print");
+		print("err:",point.row, "," ,point.col,turn, board[point.row][point.col]);
 	}
 };
 

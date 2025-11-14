@@ -1,15 +1,24 @@
 ﻿#include "Board.h"
 
-GoString GoString::merge(GoString goString)
+GoString GoString::merge(const GoString& goString)
 {
-	std::unordered_set<Point> newStones;
-	newStones.insert(stones.begin(), stones.end());
-	newStones.insert(goString.stones.begin(), goString.stones.end());
+	std::vector<Point> newStones;
+	for (const auto& stone : stones)
+	{
+		newStones.emplace_back(stone);
+	}
+	for (const auto& stone : goString.stones)
+	{
+		newStones.emplace_back(stone);
+	}
 	std::unordered_set<Point> newLiberties;
 	newLiberties.insert(liberties.begin(), liberties.end());
 	newLiberties.insert(goString.liberties.begin(), goString.liberties.end());
-	newLiberties.erase(newStones.begin(), newStones.end());
-	return GoString(color, newStones, newLiberties);
+	for (const auto& stone : newStones)
+	{
+		newLiberties.erase(stone);
+	}
+	return GoString(color, newStones, std::vector<Point>(newLiberties.begin(), newLiberties.end()));;
 }
 
 const int Board::rowDirection[4]{ 1, -1, 0, 0 };
@@ -32,45 +41,44 @@ std::vector<int> Board::legalMoves()
 }
 void Board::applyMove(int move)
 {
-	int row = move / 10;
-	int col = move % 10;
+	int row = move / 9;
+	int col = move % 9;
 	board[row][col] = turn;
 	std::unordered_set<GoString> sameColor;
 	std::unordered_set<GoString> oppositeColor;
-	std::unordered_set<Point> liberties;
+	std::vector<Point> liberties;
 	for (int i = 0; i < 4; i++)
 	{
 		int newRow = row + rowDirection[i];
 		int newCol = col + colDirection[i];
 		if (newRow < 0 || newRow > 8 || newCol < 0 || newCol > 8)
 		{
-			break;
+			continue;
 		}
 		if (board[newRow][newCol] == EMPTY)
 		{
-			liberties.insert(Point(newRow, newCol));
-			break;
+			liberties.emplace_back(Point(newRow, newCol));
+			continue;
 		}
 		if (board[newRow][newCol] == turn)
 		{
-			GoString same = findString(Point(newRow, newCol));
-			sameColor.insert(same);
+			sameColor.insert(findString(Point(newRow, newCol)));
 		}
 		else
 		{
 			oppositeColor.insert(findString(Point(newRow, newCol)));
 		}
 	}
-	GoString newString(turn, std::unordered_set<Point>{Point(row, col)}, liberties);
+	GoString newString(turn, std::vector<Point>{Point(row, col)}, liberties);
 	for (const auto& same : sameColor)
 	{
 		newString = newString.merge(same);
 		strings.erase(same);
 	}
-	for (auto& opp : oppositeColor)
+	for (const auto& opp : oppositeColor)
 	{
-		strings.erase(opp);
 		GoString newOpp = opp;
+		strings.erase(opp);
 		newOpp.removeLiberties(Point(row, col));
 		strings.insert(newOpp);
 	}
