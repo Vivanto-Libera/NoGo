@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
 using static NoGo.StoneColor;
@@ -40,6 +41,18 @@ namespace NoGo
                 newLiberties.Remove(p);
             }
             return new GoString(StringColor, newStones, newLiberties);
+        }
+        public override bool Equals(object obj)
+        {
+            if (obj is not GoString other) 
+            {
+                return false;
+            }
+            return StringColor == other.StringColor && Stones.SetEquals(other.Stones) && Liberties.SetEquals(other.Liberties);
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(StringColor, Stones, Liberties);
         }
     }
 }

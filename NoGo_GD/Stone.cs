@@ -5,6 +5,9 @@ using static NoGo.StoneColor;
 
 public partial class Stone : Node2D
 {
+	[Signal]
+	public delegate void StonePlayedEventHandler(int num);
+	public int number;
 	public void PlayStone(StoneColor color) 
 	{
 		if (color == WHITE) 
@@ -33,5 +36,9 @@ public partial class Stone : Node2D
 		GetNode<TextureRect>("White").SetDeferred(TextureRect.PropertyName.Visible, false);
 		GetNode<TextureRect>("Cross").SetDeferred(TextureRect.PropertyName.Visible, false);
 		GetNode<Button>("Button").SetDeferred(Button.PropertyName.Disabled, true);
+	}
+	public void OnButtonPressed() 
+	{
+		EmitSignal(SignalName.StonePlayed, number);
 	}
 }
