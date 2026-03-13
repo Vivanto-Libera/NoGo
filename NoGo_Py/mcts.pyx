@@ -60,13 +60,14 @@ cdef class Node():
             object q_p, q_v
         with torch.no_grad():
             q_p,q_v = network(board_state)
+            q_p = torch.nn.functional.softmax(q_p, dim=1)
         cdef float prob_sum = 0.0
         cdef Edge edge
         cdef Node _
         cdef int i
         cdef list m_idx
         if isRoot:
-            dirichlet = np.random.dirichlet([0.1] * len(self.childEdgeNode))
+            dirichlet = np.random.dirichlet([0.3] * len(self.childEdgeNode))
         for i in range(len(self.childEdgeNode)):
             edge, _ = self.childEdgeNode[i]
             edge.P = q_p[0, edge.move]
@@ -90,11 +91,14 @@ cdef class MCTS():
         public double tau
         public double c_puct
         public int times
-    def __init__(self, network, times):
+    def __init__(self, network, int times, int step):
         self.network = network
         self.rootNode = None
-        self.tau = 1.0
-        self.c_puct = 1.5 #some constant that adjust the impact of the overall bonus value u
+        if step < 10:
+            self.tau = 1
+        else:
+            self.tau = 0.01
+        self.c_puct = 2.5 #some constant that adjust the impact of the overall bonus value u
         self.times = times
 
     @cython.cdivision(True)

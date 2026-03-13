@@ -219,5 +219,9 @@ CTestTestfile.cmake
 _deps
 CMakeUserPresets.json
 extern/
-/Amazons_CPP/.vs
 /NoGo_CPP/.vs
+# Godot 4+ specific ignores
+.godot/
+/android/
+/NoGo_CPP/CMakePresets.json
+/NoGo_GD/.vs/NoGo

@@ -22,24 +22,24 @@ class NoGoModel(nn.Module):
     def __init__(self):
         super(NoGoModel, self).__init__()
         self.stem = nn.Sequential(
-            nn.Conv2d(4, 128, kernel_size=3, padding=1),
+            nn.Conv2d(2, 128, kernel_size=3, padding=1),
             nn.BatchNorm2d(128),
             nn.ReLU(),
             )
         self.resblocks = nn.Sequential(
-            *[ResidualBlock(128) for _ in range(0, 6)]
+            *[ResidualBlock(128) for _ in range(0, 12)]
         )
         self.policy_head = nn.Sequential(
-            nn.Conv2d(128, 128, 3, padding=1),
+            nn.Conv2d(128, 2, kernel_size=1),
+            nn.BatchNorm2d(2),
             nn.ReLU(),
             nn.Flatten(),
-            nn.Linear(10368, 128),
-            nn.ReLU(),
-            nn.Linear(128, 81),
-            nn.Softmax(dim=1)
+            nn.Linear(162, 81),
         )
         self.value_head = nn.Sequential(
-            nn.Conv2d(128, 1,1),
+            nn.Conv2d(128, 1, kernel_size=1),
+            nn.BatchNorm2d(1),
+            nn.ReLU(),
             nn.Flatten(),
             nn.Linear(81, 128),
             nn.ReLU(),
