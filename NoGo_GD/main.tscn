@@ -1,0 +1,256 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr7s76ibma2lx"]
+
+[ext_resource type="Texture2D" uid="uid://d0b6voxdcj0xe" path="res://image/board.png" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cbsbggni7smo7" path="res://stone.tscn" id="2_0xm2m"]
+
+[node name="Main" type="Node"]
+
+[node name="Board" type="Node2D" parent="."]
+
+[node name="BoardTexture" type="TextureRect" parent="Board"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_ig7tw")
+
+[node name="A1" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(17, 513)
+
+[node name="A2" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(17, 451)
+
+[node name="A3" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(17, 389)
+
+[node name="A4" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(17, 327)
+
+[node name="A5" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(17, 265)
+
+[node name="A6" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(17, 203)
+
+[node name="A7" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(17, 141)
+
+[node name="A8" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(17, 79)
+
+[node name="A9" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(17, 17)
+
+[node name="B1" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(79, 513)
+
+[node name="B2" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(79, 451)
+
+[node name="B3" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(79, 389)
+
+[node name="B4" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(79, 327)
+
+[node name="B5" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(79, 265)
+
+[node name="B6" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(79, 203)
+
+[node name="B7" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(79, 141)
+
+[node name="B8" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(79, 79)
+
+[node name="B9" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(79, 17)
+
+[node name="C1" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(141, 513)
+
+[node name="C2" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(141, 451)
+
+[node name="C3" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(141, 389)
+
+[node name="C4" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(141, 327)
+
+[node name="C5" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(141, 265)
+
+[node name="C6" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(141, 203)
+
+[node name="C7" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(141, 141)
+
+[node name="C8" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(141, 79)
+
+[node name="C9" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(141, 17)
+
+[node name="D1" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(203, 513)
+
+[node name="D2" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(203, 451)
+
+[node name="D3" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(203, 389)
+
+[node name="D4" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(203, 327)
+
+[node name="D5" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(203, 265)
+
+[node name="D6" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(203, 203)
+
+[node name="D7" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(203, 141)
+
+[node name="D8" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(203, 79)
+
+[node name="D9" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(203, 17)
+
+[node name="E1" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(265, 513)
+
+[node name="E2" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(265, 451)
+
+[node name="E3" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(265, 389)
+
+[node name="E4" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(265, 327)
+
+[node name="E5" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(265, 265)
+
+[node name="E6" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(265, 203)
+
+[node name="E7" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(265, 141)
+
+[node name="E8" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(265, 79)
+
+[node name="E9" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(265, 17)
+
+[node name="F1" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(327, 513)
+
+[node name="F2" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(327, 451)
+
+[node name="F3" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(327, 389)
+
+[node name="F4" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(327, 327)
+
+[node name="F5" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(327, 265)
+
+[node name="F6" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(327, 203)
+
+[node name="F7" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(327, 141)
+
+[node name="F8" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(327, 79)
+
+[node name="F9" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(327, 17)
+
+[node name="G1" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(389, 513)
+
+[node name="G2" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(389, 451)
+
+[node name="G3" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(389, 389)
+
+[node name="G4" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(389, 327)
+
+[node name="G5" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(389, 265)
+
+[node name="G6" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(389, 203)
+
+[node name="G7" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(389, 141)
+
+[node name="G8" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(389, 79)
+
+[node name="G9" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(389, 17)
+
+[node name="H1" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(451, 513)
+
+[node name="H2" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(451, 451)
+
+[node name="H3" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(451, 389)
+
+[node name="H4" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(451, 327)
+
+[node name="H5" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(451, 265)
+
+[node name="H6" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(451, 203)
+
+[node name="H7" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(451, 141)
+
+[node name="H8" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(451, 79)
+
+[node name="H9" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(451, 17)
+
+[node name="I1" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(513, 513)
+
+[node name="I2" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(513, 451)
+
+[node name="I3" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(513, 389)
+
+[node name="I4" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(513, 327)
+
+[node name="I5" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(513, 265)
+
+[node name="I6" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(513, 203)
+
+[node name="I7" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(513, 141)
+
+[node name="I8" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(513, 79)
+
+[node name="I9" parent="Board" instance=ExtResource("2_0xm2m")]
+position = Vector2(513, 17)
