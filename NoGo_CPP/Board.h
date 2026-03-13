@@ -144,6 +144,7 @@ private:
 		py::object print = py::module_::import("builtins").attr("print");
 		print("err:",point.row, "," ,point.col,turn, board[point.row][point.col]);
 	}
+	bool isLegal(int move);
 };
 
 #endif

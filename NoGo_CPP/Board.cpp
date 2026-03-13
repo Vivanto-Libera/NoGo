@@ -27,17 +27,33 @@ const int Board::colDirection[4]{ 0, 0, 1, -1 };
 std::vector<int> Board::legalMoves()
 {
 	std::vector<int> moves;
+	std::vector<int> illegalMoves;
 	for (int i = 0; i < 9;i ++)
 	{
 		for (int j = 0; j < 9; j++)
 		{
 			if (board[i][j] == EMPTY)
 			{
-				moves.emplace_back(indexToNum(i, j));
+				int move = indexToNum(i, j);
+				if (isLegal(move))
+				{
+					moves.emplace_back(move);
+				}
+				else
+				{
+					illegalMoves.emplace_back(move);
+				}
 			}
 		}
 	}
-	return moves;
+	if (!moves.empty())
+	{
+		return moves;
+	}
+	else
+	{
+		return illegalMoves;
+	}
 }
 void Board::applyMove(int move)
 {
@@ -107,14 +123,10 @@ py::tuple Board::netwrokInput()
 {
 	std::array <std::array<int, 9>, 9> playerStone;
 	std::array <std::array<int, 9>, 9> oppsiteStone;
-	std::array <std::array<int, 9>, 9> playerLiberties;
-	std::array <std::array<int, 9>, 9> oppsiteLiberties;
 	for (int i = 0; i < 9; i++)
 	{
 		for (int j = 0; j < 9; j++)
 		{
-			playerLiberties[i][j] = 0;
-			oppsiteLiberties[i][j] = 0;
 			if(board[i][j] == turn)
 			{
 				playerStone[i][j] = 1;
@@ -132,24 +144,14 @@ py::tuple Board::netwrokInput()
 			}
 		}
 	}
-	for (const auto& string : strings)
-	{
-		if(string.color == turn)
-		{
-			for (const auto& point : string.liberties)
-			{
-				playerLiberties[point.row][point.col] = 1;
-			}
-		}
-		else
-		{
-			for (const auto& point : string.liberties)
-			{
-				oppsiteLiberties[point.row][point.col] = 1;
-			}
-		}
-	}
-	return py::make_tuple(playerStone, oppsiteStone, playerLiberties, oppsiteLiberties);
+	return py::make_tuple(playerStone, oppsiteStone);
+}
+
+bool Board::isLegal(int move)
+{
+	Board newBoard = Board(*this);
+	newBoard.applyMove(move);
+	return newBoard.isTerminal() == EMPTY;
 }
 
 Board::Board()
