@@ -8,14 +8,14 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rq0vd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxlo0"]
-bg_color = Color(0.6, 0.6, 0.6, 0.39215687)
+bg_color = Color(0.6, 0.6, 0.6, 0.5882353)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rot5g"]
-bg_color = Color(0.6, 0.6, 0.6, 0.19607843)
+bg_color = Color(0.6, 0.6, 0.6, 0.39215687)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
