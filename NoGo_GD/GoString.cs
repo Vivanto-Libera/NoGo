@@ -24,7 +24,7 @@ namespace NoGo
         }
         public bool HasPoint(Point point) 
         {
-            return Liberties.Contains(point);
+            return Stones.Contains(point);
         }
         public int CountLiberties() 
         {
@@ -41,6 +41,10 @@ namespace NoGo
                 newLiberties.Remove(p);
             }
             return new GoString(StringColor, newStones, newLiberties);
+        }
+        public GoString Clone() 
+        {
+            return new GoString(StringColor, [.. Stones], [.. Liberties]);
         }
         public override bool Equals(object obj)
         {

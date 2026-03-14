@@ -83,7 +83,7 @@ namespace NoGo
         private NoGoModel model;
 #nullable enable
         private MCNode? rootNode = null;
-        private float tau = 0.01f;
+        private float tau = 0.1f;
         private float cPuct = 1.5f;
         private int sims = 100;
         public MCTS(NoGoModel model)
@@ -116,7 +116,7 @@ namespace NoGo
                 return [0.0f];
             }
             int NSum = 0;
-            float[] moveProbs = new float[3516];
+            float[] moveProbs = new float[81];
             foreach (EdgeNode edgeNode in rootNode.childEdgeNodes)
             {
                 if (token.IsCancellationRequested)

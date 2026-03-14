@@ -33,6 +33,7 @@ public partial class Stone : Node2D
 		if (stonePlayed) 
 		{
 			GetNode<Button>("Button").SetDeferred(Button.PropertyName.Disabled, true);
+			return;
 		}
 		GetNode<Button>("Button").SetDeferred(Button.PropertyName.Disabled, disable);
 	}

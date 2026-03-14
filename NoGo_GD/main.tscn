@@ -1,11 +1,182 @@
-[gd_scene load_steps=3 format=3 uid="uid://cr7s76ibma2lx"]
+[gd_scene load_steps=17 format=3 uid="uid://cr7s76ibma2lx"]
 
+[ext_resource type="Script" uid="uid://dedysed37ofu" path="res://Main.cs" id="1_1bvp3"]
+[ext_resource type="Script" uid="uid://djr61gya250g0" path="res://Board.cs" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://d0b6voxdcj0xe" path="res://image/board.png" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cbsbggni7smo7" path="res://stone.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://dxuiqnomdermx" path="res://ChooseColor.cs" id="5_lquwl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mycd"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 6
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
+bg_color = Color(0.91764706, 0.91764706, 0.91764706, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kek77"]
+bg_color = Color(0.9607843, 0.9607843, 0.9607843, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 6
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4c57u"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efxa6"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dg77c"]
+bg_color = Color(0.32172796, 0.32172796, 0.32172796, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ycdy4"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w48qg"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 6
+shadow_offset = Vector2(0, 2)
 
 [node name="Main" type="Node"]
+script = ExtResource("1_1bvp3")
+
+[node name="PlayerTimer" type="Timer" parent="."]
+
+[node name="AiTimer" type="Timer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.16862746, 0.16862746, 0.16862746, 1)
 
 [node name="Board" type="Node2D" parent="."]
+script = ExtResource("1_h2yge")
 
 [node name="BoardTexture" type="TextureRect" parent="Board"]
 offset_right = 40.0
@@ -254,3 +425,120 @@ position = Vector2(513, 79)
 
 [node name="I9" parent="Board" instance=ExtResource("2_0xm2m")]
 position = Vector2(513, 17)
+
+[node name="ChooseColor" type="Node2D" parent="."]
+script = ExtResource("5_lquwl")
+
+[node name="Black" type="Button" parent="ChooseColor"]
+offset_left = 606.0
+offset_top = 127.0
+offset_right = 756.0
+offset_bottom = 217.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_lquwl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7mycd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_272bh")
+text = "执黑"
+
+[node name="White" type="Button" parent="ChooseColor"]
+offset_left = 606.0
+offset_top = 344.0
+offset_right = 756.0
+offset_bottom = 434.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_1bvp3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5vw27")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kek77")
+text = "执白"
+
+[node name="InGame" type="Node2D" parent="."]
+visible = false
+
+[node name="WhitePlayer" type="Label" parent="InGame"]
+offset_left = 611.0
+offset_top = 36.0
+offset_right = 751.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_4c57u")
+text = "Baduk模型
+00：00"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="BlackPlayer" type="Label" parent="InGame"]
+offset_left = 611.0
+offset_top = 136.0
+offset_right = 751.0
+offset_bottom = 200.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_efxa6")
+text = "玩家
+00：00"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Undo" type="Button" parent="InGame"]
+offset_left = 611.0
+offset_top = 236.0
+offset_right = 751.0
+offset_bottom = 300.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_dg77c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ycdy4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_w48qg")
+text = "悔棋"
+
+[node name="Over" type="Button" parent="InGame"]
+offset_left = 611.0
+offset_top = 336.0
+offset_right = 751.0
+offset_bottom = 400.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_dg77c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ycdy4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_w48qg")
+text = "结束"
+
+[node name="Record" type="Button" parent="InGame"]
+offset_left = 611.0
+offset_top = 436.0
+offset_right = 751.0
+offset_bottom = 500.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_dg77c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ycdy4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_w48qg")
+text = "棋谱"
+
+[node name="SimsBox" type="SpinBox" parent="InGame"]
+offset_left = 651.0
+offset_top = 517.0
+offset_right = 787.0
+offset_bottom = 548.0
+max_value = 1000.0
+rounded = true
+
+[node name="SimsLable" type="Label" parent="InGame"]
+offset_left = 576.0
+offset_top = 521.0
+offset_right = 640.0
+offset_bottom = 544.0
+text = "模拟次数"
+
+[connection signal="StonePlayed" from="Board" to="." method="OnStonePlayed"]
+[connection signal="ColorChose" from="ChooseColor" to="." method="OnColorChose"]
+[connection signal="pressed" from="ChooseColor/Black" to="ChooseColor" method="OnBlackPressed"]
+[connection signal="pressed" from="ChooseColor/White" to="ChooseColor" method="OnWhitePressed"]
