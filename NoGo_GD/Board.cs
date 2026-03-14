@@ -19,7 +19,7 @@ public partial class Board : Node2D
 		stones[num].PlayStone(color);
 		ShowCross(num);
 	}
-	public void TakeBackStone(int num, int lastStone) 
+	public void UndoStone(int num, int lastStone) 
 	{
 		stones[num].Reset();
 		ShowCross(lastStone);
@@ -41,7 +41,10 @@ public partial class Board : Node2D
 		{
 			stones[i].SetCrossVisible(false);
 		}
-		stones[num].SetCrossVisible(true);
+		if (num != -1) 
+		{
+			stones[num].SetCrossVisible(true);
+		}
 	}
 	public override void _Ready()
 	{

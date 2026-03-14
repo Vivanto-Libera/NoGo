@@ -544,3 +544,4 @@ text = "模拟次数"
 [connection signal="ColorChose" from="ChooseColor" to="." method="OnColorChose"]
 [connection signal="pressed" from="ChooseColor/Black" to="ChooseColor" method="OnBlackPressed"]
 [connection signal="pressed" from="ChooseColor/White" to="ChooseColor" method="OnWhitePressed"]
+[connection signal="pressed" from="InGame/Undo" to="." method="OnUndoPressed"]

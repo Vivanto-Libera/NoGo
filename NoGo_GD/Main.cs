@@ -11,6 +11,8 @@ public partial class Main : Node
 	private Agent agent = new();
 	private StoneColor playerColor;
 	private Stack<int> moves = new();
+	private Stack<GameBoard> lastBoards = new();
+	private GameBoard lastBoard;
 	private Timer aiTimer;
 	private Timer playerTimer;
 	private int aiTime;
@@ -26,6 +28,7 @@ public partial class Main : Node
 	{
 		if (playerColor == BLACK) 
 		{
+			lastBoard = new(gameBoard);
 			aiTimer.Stop();
 			playerTimer.Start();
 			board.SetButtonsDisable(false);
@@ -56,9 +59,11 @@ public partial class Main : Node
 		board.SetButtonsDisable(false);
 		aiTimer.Stop();
 		playerTimer.Start();
+		lastBoard = new(gameBoard);
 	}
 	private void OnStonePlayed(int move) 
 	{
+		lastBoards.Push(lastBoard);
 		moves.Push(move);
 		board.PlayStone(move, playerColor);
 		gameBoard.ApplyMove(move);
@@ -73,6 +78,32 @@ public partial class Main : Node
 		playerTimer.Stop();
 		AiMove();
 	}
+	private void OnUndoPressed() 
+	{
+		if (lastBoards.Count == 0) 
+		{
+			return;
+		}
+		agent.StopThread();
+		if (gameBoard.turn == playerColor) 
+		{
+			board.UndoStone(moves.Pop(), moves.Peek());
+		}
+		if (moves.Count == 1)
+		{
+			board.UndoStone(moves.Pop(), -1);
+		}
+		else
+		{
+			board.UndoStone(moves.Pop(), moves.Peek());
+		}
+		gameBoard = lastBoards.Pop();
+		lastBoard = new(gameBoard);
+		board.SetButtonsDisable(false);
+		aiTimer.Stop();
+		playerTimer.Start();
+	}
+
 
 	private void GameOver(StoneColor winner) 
 	{
@@ -114,6 +145,7 @@ public partial class Main : Node
 		GetNode<Node2D>("InGame").Hide();
 		gameBoard = new();
 		moves.Clear();
+		lastBoards.Clear();
 		aiTimer.Stop();
 		playerTimer.Stop();
 		aiTime = 0;

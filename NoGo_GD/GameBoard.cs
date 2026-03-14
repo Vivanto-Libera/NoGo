@@ -98,7 +98,7 @@ namespace NoGo
 		public StoneColor IsTerminal() 
 		{
 			foreach (var goString in goStrings)
-	{
+			{
 				if (goString.CountLiberties() == 0)
 				{
 					return turn;
