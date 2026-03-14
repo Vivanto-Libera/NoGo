@@ -15,7 +15,7 @@ namespace NoGo
 		private CancellationTokenSource cts;
 		private GameBoard board;
 		private readonly NoGoModel model = new();
-		public int sims = 200;
+		public int sims = 100;
 
 		public void StartThread()
 		{

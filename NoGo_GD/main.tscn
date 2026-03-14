@@ -427,6 +427,7 @@ position = Vector2(513, 79)
 position = Vector2(513, 17)
 
 [node name="ChooseColor" type="Node2D" parent="."]
+visible = false
 script = ExtResource("5_lquwl")
 
 [node name="Black" type="Button" parent="ChooseColor"]
@@ -459,7 +460,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_kek77")
 text = "执白"
 
 [node name="InGame" type="Node2D" parent="."]
-visible = false
 
 [node name="WhitePlayer" type="Label" parent="InGame"]
 offset_left = 611.0
@@ -538,6 +538,8 @@ offset_right = 640.0
 offset_bottom = 544.0
 text = "模拟次数"
 
+[connection signal="timeout" from="PlayerTimer" to="." method="OnPlayerTimerTimeout"]
+[connection signal="timeout" from="AiTimer" to="." method="OnAiTimerTimeout"]
 [connection signal="StonePlayed" from="Board" to="." method="OnStonePlayed"]
 [connection signal="ColorChose" from="ChooseColor" to="." method="OnColorChose"]
 [connection signal="pressed" from="ChooseColor/Black" to="ChooseColor" method="OnBlackPressed"]
