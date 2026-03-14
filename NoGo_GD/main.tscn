@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://cr7s76ibma2lx"]
+[gd_scene load_steps=18 format=3 uid="uid://cr7s76ibma2lx"]
 
 [ext_resource type="Script" uid="uid://dedysed37ofu" path="res://Main.cs" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://djr61gya250g0" path="res://Board.cs" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://d0b6voxdcj0xe" path="res://image/board.png" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cbsbggni7smo7" path="res://stone.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://dxuiqnomdermx" path="res://ChooseColor.cs" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cw1cwdnw451ye" path="res://save_record.tscn" id="6_7mycd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
 bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
@@ -538,6 +539,20 @@ offset_right = 640.0
 offset_bottom = 544.0
 text = "模拟次数"
 
+[node name="WhoWin" type="Label" parent="."]
+visible = false
+offset_left = 153.0
+offset_top = 236.0
+offset_right = 409.0
+offset_bottom = 325.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "黑方获胜"
+
+[node name="SaveRecord" parent="." instance=ExtResource("6_7mycd")]
+initial_position = 1
+visible = false
+
 [connection signal="timeout" from="PlayerTimer" to="." method="OnPlayerTimerTimeout"]
 [connection signal="timeout" from="AiTimer" to="." method="OnAiTimerTimeout"]
 [connection signal="StonePlayed" from="Board" to="." method="OnStonePlayed"]
@@ -545,3 +560,6 @@ text = "模拟次数"
 [connection signal="pressed" from="ChooseColor/Black" to="ChooseColor" method="OnBlackPressed"]
 [connection signal="pressed" from="ChooseColor/White" to="ChooseColor" method="OnWhitePressed"]
 [connection signal="pressed" from="InGame/Undo" to="." method="OnUndoPressed"]
+[connection signal="pressed" from="InGame/Over" to="." method="OnOverPressed"]
+[connection signal="pressed" from="InGame/Record" to="." method="OnRecordPressed"]
+[connection signal="value_changed" from="InGame/SimsBox" to="." method="OnSimsChanged"]

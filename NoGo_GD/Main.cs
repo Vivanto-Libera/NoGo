@@ -11,6 +11,7 @@ public partial class Main : Node
 	private Agent agent = new();
 	private StoneColor playerColor;
 	private Stack<int> moves = new();
+	private StoneColor finalWinner;
 	private Stack<GameBoard> lastBoards = new();
 	private GameBoard lastBoard;
 	private Timer aiTimer;
@@ -26,6 +27,7 @@ public partial class Main : Node
 	}
 	private void GameStart() 
 	{
+		GetNode<Node2D>("InGame").GetNode<Button>("Record").Hide();
 		if (playerColor == BLACK) 
 		{
 			lastBoard = new(gameBoard);
@@ -70,7 +72,7 @@ public partial class Main : Node
 		StoneColor winner = gameBoard.IsTerminal();
 		if (winner != EMPTY)
 		{
-			GameOver(playerColor);
+			GameOver(playerColor == BLACK ? WHITE : BLACK);
 			return;
 		}
 		board.SetButtonsDisable(true);
@@ -80,6 +82,8 @@ public partial class Main : Node
 	}
 	private void OnUndoPressed() 
 	{
+		GetNode<Label>("WhoWin").Hide();
+		GetNode<Node2D>("InGame").GetNode<Button>("Record").Hide();
 		if (lastBoards.Count == 0) 
 		{
 			return;
@@ -103,11 +107,29 @@ public partial class Main : Node
 		aiTimer.Stop();
 		playerTimer.Start();
 	}
+	private void OnOverPressed() 
+	{
+		agent.StopThread();
+		Reset();
+	}
 
 
 	private void GameOver(StoneColor winner) 
 	{
-		//ToDo
+		GetNode<Node2D>("InGame").GetNode<Button>("Record").Show();
+		aiTimer.Stop();
+		playerTimer.Stop();
+		board.SetButtonsDisable(true);
+		if (winner == BLACK) 
+		{
+			GetNode<Label>("WhoWin").Text = "黑方获胜";
+		}
+		else 
+		{
+			GetNode<Label>("WhoWin").Text = "白方获胜";
+		}
+		finalWinner = winner;
+		GetNode<Label>("WhoWin").Show();
 	}
 	private void SetLabel() 
 	{
@@ -136,7 +158,16 @@ public partial class Main : Node
 		aiTime++;
 		SetLabel();
 	}
+	private void OnSimsChanged(float val) 
+	{
+		agent.sims = (int)(val);
+	}
+	private void OnRecordPressed() 
+	{
+		GetNode<SaveRecord>("SaveRecord").SetMovesAndWinner(moves, finalWinner, playerColor == StoneColor.BLACK ? WHITE : StoneColor.BLACK);
+		GetNode<SaveRecord>("SaveRecord").Show();
 
+	}
 
 	private void Reset() 
 	{
@@ -150,6 +181,7 @@ public partial class Main : Node
 		playerTimer.Stop();
 		aiTime = 0;
 		playerTime = 0;
+		GetNode<Label>("WhoWin").Hide();
 	}
 	public override void _Ready()
 	{
@@ -158,6 +190,7 @@ public partial class Main : Node
 		playerTimer = GetNode<Timer>("PlayerTimer");
 		Reset();
 		agent.AiSelectedMove += AiMoved;
+		GetNode<Node2D>("InGame").GetNode<SpinBox>("SimsBox").SetValueNoSignal(100);
 	}
 
 }

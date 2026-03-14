@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://cw1cwdnw451ye"]
+
+[ext_resource type="Script" uid="uid://cyhyr3r1dwc63" path="res://SaveRecord.cs" id="1_i473i"]
+
+[node name="SaveRecord" type="Window"]
+oversampling_override = 1.0
+title = "保存棋谱"
+size = Vector2i(300, 150)
+script = ExtResource("1_i473i")
+
+[node name="TeamEdit" type="TextEdit" parent="."]
+offset_left = 115.0
+offset_top = 1.0
+offset_right = 298.0
+offset_bottom = 30.0
+
+[node name="TeamLabel" type="Label" parent="."]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 113.0
+offset_bottom = 31.0
+text = "对方队伍名称："
+
+[node name="PositionEdit" type="TextEdit" parent="."]
+offset_left = 115.0
+offset_top = 45.0
+offset_right = 298.0
+offset_bottom = 74.0
+
+[node name="PositionLabel" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 45.0
+offset_right = 96.0
+offset_bottom = 75.0
+text = "比赛地点："
+
+[node name="Save" type="Button" parent="."]
+offset_left = 118.0
+offset_top = 94.0
+offset_right = 182.0
+offset_bottom = 129.0
+text = "保存"
+
+[connection signal="close_requested" from="." to="." method="OnClosedClicked"]
+[connection signal="pressed" from="Save" to="." method="OnSavePressed"]
