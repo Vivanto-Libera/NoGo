@@ -3,6 +3,7 @@ using NoGo;
 using System;
 using System.Collections.Generic;
 using static NoGo.StoneColor;
+using System.IO;
 
 public partial class Main : Node
 {
@@ -161,6 +162,7 @@ public partial class Main : Node
 	private void OnSimsChanged(float val) 
 	{
 		agent.sims = (int)(val);
+		File.WriteAllText("sims.dat", agent.sims.ToString());
 	}
 	private void OnRecordPressed() 
 	{
@@ -183,6 +185,12 @@ public partial class Main : Node
 		playerTime = 0;
 		GetNode<Label>("WhoWin").Hide();
 	}
+
+	private int ReadSims()
+	{
+		string sims = File.ReadAllText("sims.dat");
+		return sims.ToInt();
+	}
 	public override void _Ready()
 	{
 		board = GetNode<Board>("Board");
@@ -190,7 +198,8 @@ public partial class Main : Node
 		playerTimer = GetNode<Timer>("PlayerTimer");
 		Reset();
 		agent.AiSelectedMove += AiMoved;
-		GetNode<Node2D>("InGame").GetNode<SpinBox>("SimsBox").SetValueNoSignal(100);
+		agent.sims = ReadSims();
+		GetNode<Node2D>("InGame").GetNode<SpinBox>("SimsBox").SetValueNoSignal(agent.sims);
 	}
 
 }
