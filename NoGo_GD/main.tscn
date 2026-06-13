@@ -529,7 +529,7 @@ offset_left = 651.0
 offset_top = 517.0
 offset_right = 787.0
 offset_bottom = 548.0
-max_value = 1000.0
+max_value = 10000.0
 rounded = true
 
 [node name="SimsLable" type="Label" parent="InGame"]
